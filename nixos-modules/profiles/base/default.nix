@@ -5,16 +5,10 @@ flake: {
 }: let
   cfg = config.profiles.base;
 in {
-  options = with lib; {
-    profiles.base = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable a base configuration including software packages included in the minimal installation CD.
-        '';
-      };
-    };
+  options = {
+    profiles.base.enable = lib.mkEnableOption ''
+      Whether to enable a base configuration including software packages included in the minimal installation CD.
+    '';
   };
 
   imports = [

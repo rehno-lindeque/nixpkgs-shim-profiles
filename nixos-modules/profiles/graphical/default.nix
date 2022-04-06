@@ -5,17 +5,11 @@ flake: {
 }: let
   cfg = config.profiles.graphical;
 in {
-  options = with lib; {
-    profiles.graphical = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable a graphical configuration profile based on the plasma5 desktop and including software
-          used by the graphical installation CD.
-        '';
-      };
-    };
+  options = {
+    profiles.graphical.enable = lib.mkEnableOption ''
+      Whether to enable a graphical configuration profile based on the plasma5 desktop and including software
+      used by the graphical installation CD.
+    '';
   };
 
   imports = [

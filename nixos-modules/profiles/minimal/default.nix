@@ -5,16 +5,10 @@ flake: {
 }: let
   cfg = config.profiles.minimal;
 in {
-  options = with lib; {
-    profiles.minimal = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable a minimal profile with graphical stuff, documentation, locales and sound disabled.
-        '';
-      };
-    };
+  options = {
+    profiles.minimal.enable = lib.mkEnableOption ''
+      Whether to enable a minimal profile with graphical stuff, documentation, locales and sound disabled.
+    '';
   };
 
   imports = [

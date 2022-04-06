@@ -5,16 +5,10 @@ flake: {
 }: let
   cfg = config.profiles.dockerContainer;
 in {
-  options = with lib; {
-    profiles.dockerContainer = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable the base profile from which the official Docker images are generated.
-        '';
-      };
-    };
+  options = {
+    profiles.dockerContainer.enable = lib.mkEnableOption ''
+      Whether to enable the base profile from which the official Docker images are generated.
+    '';
   };
 
   imports = [

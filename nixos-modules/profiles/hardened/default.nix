@@ -5,17 +5,11 @@ flake: {
 }: let
   cfg = config.profiles.hardened;
 in {
-  options = with lib; {
-    profiles.hardened = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable a hardened configuration profile which sets various flags in security.*, boot.*, etc.
-          You may wish to try turning this off if you experience stability issues.
-        '';
-      };
-    };
+  options = {
+    profiles.hardened.enable = lib.mkEnableOption ''
+      Whether to enable a hardened configuration profile which sets various flags in security.*, boot.*, etc.
+      You may wish to try turning this off if you experience stability issues.
+    '';
   };
 
   imports = [

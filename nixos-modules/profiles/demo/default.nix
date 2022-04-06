@@ -5,16 +5,10 @@ flake: {
 }: let
   cfg = config.profiles.demo;
 in {
-  options = with lib; {
-    profiles.demo = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable demo configuration profile which includes a demo user with demo password and autologin.
-        '';
-      };
-    };
+  options = {
+    profiles.demo.enable = lib.mkEnableOption ''
+      Whether to enable demo configuration profile which includes a demo user with demo password and autologin.
+    '';
   };
 
   imports = [

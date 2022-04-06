@@ -5,16 +5,10 @@ flake: {
 }: let
   cfg = config.profiles.cloneConfig;
 in {
-  options = with lib; {
-    profiles.cloneConfig = {
-      enable = mkOption {
-        type = types.bool;
-        default = false;
-        description = ''
-          Whether to enable a configuration profile which includes a configuration.nix template for an installer.
-        '';
-      };
-    };
+  options = {
+    profiles.cloneConfig.enable = lib.mkEnableOption ''
+      Whether to enable a configuration profile which includes a configuration.nix template for an installer.
+    '';
   };
 
   imports = [
