@@ -7,7 +7,22 @@
   };
 
   outputs = {self, ...}: {
-    nixosModules = {
+    nixosModules = rec {
+      default = {
+        imports = [
+          allHardware
+          base
+          cloneConfig
+          demo
+          dockerContainer
+          graphical
+          hardened
+          headless
+          installationDevice
+          minimal
+          qemuGuest
+        ];
+      };
       allHardware = import ./nixos-modules/profiles/all-hardware self;
       base = import ./nixos-modules/profiles/base self;
       cloneConfig = import ./nixos-modules/profiles/clone-config self;
